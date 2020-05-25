@@ -21,13 +21,14 @@ import imageio
 To simplify, the PyTorch MNIST wrapper, which downloads and loads the MNIST dataset. See the [documentation](https://github.com/pytorch/vision/blob/master/torchvision/datasets/mnist.py) for more information about the interface. The default parameters will take 5,000 of the training examples and place them into a validation dataset. The data will be saved into a folder called `MNIST_data`.
 """
 
-Data loader code
+data = MNIST(root='./data', train=True, download=True, transform=None)
 
 """## Random Noise
 Generate uniform noise from -1 to 1 with shape `[batch_size, dim]`. Implement `sample_noise` Hint: use `torch.rand`. Make sure noise is the correct shape and type:
 """
 
-def sample_noise():
+def sample_noise(batch_size, dim): 
+    return torch.rand(batch_size, dim) + torch.rand(batch_size, dim)*(-1)
 
 """# Discriminator
 Our first step is to build a discriminator. Fill in the architecture: A three hidden-layer discriminative neural network.
