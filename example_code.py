@@ -21,7 +21,7 @@ import imageio
 To simplify, the PyTorch MNIST wrapper, which downloads and loads the MNIST dataset. See the [documentation](https://github.com/pytorch/vision/blob/master/torchvision/datasets/mnist.py) for more information about the interface. The default parameters will take 5,000 of the training examples and place them into a validation dataset. The data will be saved into a folder called `MNIST_data`.
 """
 
-data = MNIST(root='./data', train=True, download=True, transform=None)
+data = MNIST(root='./MNIST_data', train=True, download=True, transform=None)
 
 """## Random Noise
 Generate uniform noise from -1 to 1 with shape `[batch_size, dim]`. Implement `sample_noise` Hint: use `torch.rand`. Make sure noise is the correct shape and type:
