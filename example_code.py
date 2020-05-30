@@ -62,8 +62,34 @@ class GeneratorNet(torch.nn.Module):
 
     def __init__(self):
         super(GeneratorNet, self).__init__()
+        n_features = 6000 #not sure what the correct value would be, is this how many photos we have?
+        n_out = 784 #I think 784 is correct? 
+        
+        #all values will probably have to be replaced, I don't know how to check if this is correct
+        self.hidden0 = nn.Sequential(
+            nn.Linear(n_features, 256), 
+            nn.LeakyReLU(0.2)
+        )
+        self.hidden1 = nn.Sequential(            
+            nn.Linear(256, 512), 
+            nn.LeakyReLU(0.2)
+        )
+        self.hidden2 = nn.Sequential(
+            nn.Linear(512, 1024), 
+            nn.LeakyReLU(0.2)
+        )
+        
+        self.out = nn.Sequential(
+            nn.Linear(1024, n_out),
+            nn.Tanh()
+        )
 
     def forward(self, x):
+        x = self.hidden0(x)
+        x = self.hidden1(x)
+        x = self.hidden2(x)
+        x = self.out(x)
+        return x
 
 """# Optimization
 Make a function that returns an `optim.Adam` optimizer
