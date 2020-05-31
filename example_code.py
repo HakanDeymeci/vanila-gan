@@ -45,19 +45,26 @@ class DiscriminatorNet(torch.nn.Module):
         super(DiscriminatorNet, self).__init__()  
 
         input_size = 728 #input value of flattened picture?
-        output_size = 256  #dimension of picture?
+        output_size = 256  #value of output picture?
 
-        self.layer = nn.Sequential(
+        self.firstHiddenLayer = nn.Sequential(
             nn.Linear(input_size, 512),
             nn.LeakyReLU(0.5),
+        )
+
+        self.secondHiddenLayer = nn.Sequential(
             nn.Linear(512, 256),
             nn.LeakyReLU(0.5),
+        )
+            
+        self.outputLayer = nn.Sequential(
             nn.Linear(256, output_size), #256 = value of output picture?
         )
 
     def forward(self, x):
-      x = x.view(x.size(0), 1)
-      x = self.layer(x)
+      x = self.firstHiddenLayer(x)
+      x = self.secondHiddenLayer(x)
+      x = self.outputLayer(x)
       return x
 
 """# Generator
