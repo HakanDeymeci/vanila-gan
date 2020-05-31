@@ -43,13 +43,16 @@ class DiscriminatorNet(torch.nn.Module):
 
     def __init__(self):
         super(DiscriminatorNet, self).__init__()  
-
+        
+        #why using 728 instead of 784 = 28x28?
+        
         input_size = 728 #input value of flattened picture?
         output_size = 256  #value of output picture?
-
+        
+        #maybe use same multipicator for LeakyReLU
         self.firstHiddenLayer = nn.Sequential(
             nn.Linear(input_size, 512),
-            nn.LeakyReLU(0.5),
+            nn.LeakyReLU(0.5), 
         )
 
         self.secondHiddenLayer = nn.Sequential(
