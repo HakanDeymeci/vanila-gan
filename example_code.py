@@ -44,9 +44,7 @@ class DiscriminatorNet(torch.nn.Module):
     def __init__(self):
         super(DiscriminatorNet, self).__init__()  
         
-        #why using 728 instead of 784 = 28x28?
-        
-        input_size = 728 #input value of flattened picture?
+        input_size = 784 #input value of flattened picture 28x28
         output_size = 256  #value of output picture?
         
         #maybe use same multipicator for LeakyReLU
