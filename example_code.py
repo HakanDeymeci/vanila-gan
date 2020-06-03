@@ -118,6 +118,8 @@ Make a function that returns an `optim.Adam` optimizer
 """
 
 # Optimizers
+d_optimizer = optim.Adam(discriminator.parameters(), lr=0.0002) #lr=learning rate, maybe we can up it and see what happens
+g_optimizer = optim.Adam(generator.parameters(), lr=0.0002)
 
 # Loss function
 loss = nn.BCELoss()
