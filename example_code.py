@@ -43,21 +43,18 @@ class DiscriminatorNet(torch.nn.Module):
 
     def __init__(self):
         super(DiscriminatorNet, self).__init__()  
-        
-        #why using 728 instead of 784 = 28x28?
-        
-        input_size = 728 #input value of flattened picture?
-        output_size = 256  #value of output picture?
-        
-        #maybe use same multipicator for LeakyReLU
+
+        input_size = 784 #input value of flattened picture?
+        output_size = 128  #value of output picture?
+
         self.firstHiddenLayer = nn.Sequential(
             nn.Linear(input_size, 512),
-            nn.LeakyReLU(0.5), 
+            nn.LeakyReLU(0.2),
         )
 
         self.secondHiddenLayer = nn.Sequential(
             nn.Linear(512, 256),
-            nn.LeakyReLU(0.5),
+            nn.LeakyReLU(0.2),
         )
             
         self.outputLayer = nn.Sequential(
@@ -70,6 +67,11 @@ class DiscriminatorNet(torch.nn.Module):
       x = self.outputLayer(x)
       return x
 
+def images_to_vectors(images):
+  return images.view(images.size(0), 784)
+
+def vectors_to_images(vectors):
+  return vectors.view(vectors.size(0), 1, 28, 28)
 """# Generator
 Similar like above:
  * Fully connected layer
