@@ -46,31 +46,33 @@ Our first step is to build a discriminator. Fill in the architecture: A three hi
 class DiscriminatorNet(torch.nn.Module):
 
     def __init__(self):
-        super(DiscriminatorNet, self).__init__()  
+        super(DiscriminatorNet, self).__init__()
+        input_size = 784 #28x28
+        output_size = 1
         
-        input_size = 784 #input value of flattened picture 28x28
-        output_size = 256  #value of output picture?
-        
-        #maybe use same multipicator for LeakyReLU
-        self.firstHiddenLayer = nn.Sequential(
-            nn.Linear(input_size, 512),
-            nn.LeakyReLU(0.5), 
+        self.firstHiddenLayer = nn.Sequential( 
+            nn.Linear(input_size, 1024),
+            nn.LeakyReLU(0.2)
         )
-
         self.secondHiddenLayer = nn.Sequential(
-            nn.Linear(512, 256),
-            nn.LeakyReLU(0.5),
+            nn.Linear(1024, 512),
+            nn.LeakyReLU(0.2)
         )
-            
+        self.thirdHiddenLayer = nn.Sequential(
+            nn.Linear(512, 256),
+            nn.LeakyReLU(0.2)
+        )
         self.outputLayer = nn.Sequential(
-            nn.Linear(256, output_size), #256 = value of output picture?
+            torch.nn.Linear(256, output_size),
+            torch.nn.Sigmoid()
         )
 
     def forward(self, x):
-      x = self.firstHiddenLayer(x)
-      x = self.secondHiddenLayer(x)
-      x = self.outputLayer(x)
-      return x
+        x = self.firstHiddenLayer(x)
+        x = self.secondHiddenLayer(x)
+        x = self.thirdHiddenLayer(x)
+        x = self.outputLayer(x)
+        return x
 
 """# Generator
 Similar like above:
