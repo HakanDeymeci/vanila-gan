@@ -77,6 +77,8 @@ class DiscriminatorNet(torch.nn.Module):
         x = self.thirdHiddenLayer(x)
         x = self.outputLayer(x)
         return x
+    
+discriminator = DiscriminatorNet()
 
 """# Generator
 Similar like above:
@@ -123,12 +125,18 @@ class GeneratorNet(torch.nn.Module):
         x = self.hidden2(x)
         x = self.out(x)
         return x
+    
+generator = GeneratorNet()
 
 """# Optimization
 Make a function that returns an `optim.Adam` optimizer
 """
 
 # Optimizers
+Discriminator_lr = 0.0007
+Generator_lr = 0.0006
+Discriminator_Optimizer = optim.Adam(discriminator.parameters(), lr=Discriminator_lr) #lr = learning rate
+Generator_Optimizer = optim.Adam(generator.parameters(), lr=Generator_lr)
 
 # Loss function
 loss = nn.BCELoss()
