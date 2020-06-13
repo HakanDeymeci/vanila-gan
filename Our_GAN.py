@@ -48,22 +48,26 @@ class DiscriminatorNet(torch.nn.Module):
     def __init__(self):
         super(DiscriminatorNet, self).__init__()
         input_size = 784 #28x28
+        DfirstHiddenLayer_size = 1024
+        DsecondHiddenLayer_size = 512
+        DthirdHiddenLayer_size = 256
+        
         output_size = 1
         
         self.firstHiddenLayer = nn.Sequential( 
-            nn.Linear(input_size, 1024),
+            nn.Linear(input_size, firstHiddenLayer_size),
             nn.LeakyReLU(0.2)
         )
         self.secondHiddenLayer = nn.Sequential(
-            nn.Linear(1024, 512),
+            nn.Linear(firstHiddenLayer_size, secondHiddenLayer_size),
             nn.LeakyReLU(0.2)
         )
         self.thirdHiddenLayer = nn.Sequential(
-            nn.Linear(512, 256),
+            nn.Linear(secondHiddenLayer_size, thirdHiddenLayer_size),
             nn.LeakyReLU(0.2)
         )
         self.outputLayer = nn.Sequential(
-            torch.nn.Linear(256, output_size),
+            torch.nn.Linear(thirdHiddenLayer_size, output_size),
             torch.nn.Sigmoid()
         )
 
@@ -90,23 +94,26 @@ class GeneratorNet(torch.nn.Module):
         super(GeneratorNet, self).__init__()
         n_features = 6000 #not sure what the correct value would be, is this how many photos we have?
         n_out = 784 #I think 784 is correct? 
+        GfirstHiddenLayer_size = 256
+        GsecondHiddenLayer_size = 512
+        GthirdHiddenLayer_size = 1024
         
         #all values will probably have to be replaced, I don't know how to check if this is correct
         self.hidden0 = nn.Sequential(
-            nn.Linear(n_features, 256), 
+            nn.Linear(n_features, GfirstHiddenLayer_size), 
             nn.LeakyReLU(0.2)
         )
         self.hidden1 = nn.Sequential(            
-            nn.Linear(256, 512), 
+            nn.Linear(GfirstHiddenLayer_size, GsecondHiddenLayer_size), 
             nn.LeakyReLU(0.2)
         )
         self.hidden2 = nn.Sequential(
-            nn.Linear(512, 1024), 
+            nn.Linear(GsecondHiddenLayer_size, GfirstHiddenLayer_size), 
             nn.LeakyReLU(0.2)
         )
         
         self.out = nn.Sequential(
-            nn.Linear(1024, n_out),
+            nn.Linear(GfirstHiddenLayer_size, n_out),
             nn.Tanh()
         )
 
