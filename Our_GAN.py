@@ -22,7 +22,7 @@ To simplify, the PyTorch MNIST wrapper, which downloads and loads the MNIST data
 """
 
 batch_size = 5000 #number of training examples
-transform_data = transforms.Compose([transforms.ToTensor()])
+transform_data = transforms.Compose([transforms.ToTensor(), transforms.Normalize(mean=[0.5], std=[0.5])])
 
 mnist_data = MNIST(root='./MNIST_data', train=True, download=True, transform=transform_data) 
 data_loader = DataLoader(dataset=mnist_data, shuffle=True, batch_size=batch_size)
