@@ -144,15 +144,16 @@ loss = nn.BCELoss()
 """# Training a GAN!"""
 
 def real_data_target(size):
-    
+    data = Variable(torch.ones(size, 1))
     return data
 
 def fake_data_target(size):
-
+    data = Variable(torch.zeros(size, 1))
     return data
 
 def train_discriminator(optimizer, real_data, fake_data):
     # Reset gradients
+    optimizer.zero_grad()
    
     # Train on Real Data
     # Calculate error and backpropagate
