@@ -1,15 +1,16 @@
 # vanila-gan
- Teamproject GAN Group 1.
- Team members: Julien, Hakan, Dennis, Delight
-Documentation:
-#21.05.2020
-We created a Whatsapp Group and a Discord sever to be better in contact with each of us.
+Teamproject GAN Group 1.
+Team members: Julien, Hakan, Dennis, Delight
 
-#25.05.2020
-Over the weekend, we created a text-channel on our Discord server "websites-and-links" where we collected some useful links and explanations about our project.
-The Monday later we had our first meeting over Discord. We created the repository and the project "vanila-gan" and tried to get used to github.
-Results from the first Meeting:
-	- created the project
+Documentation:<br />
+#21.05.2020<br />
+We created a Whatsapp Group and a Discord sever to be better in contact with each of us.<br />
+
+#25.05.2020<br />
+Over the weekend, we created a text-channel on our Discord server "websites-and-links" where we collected some useful links and explanations about our project.<br />
+The Monday later we had our first meeting over Discord. We created the repository and the project "vanila-gan" and tried to get used to github.<br />
+Results from the first Meeting:<br />
+	- created the project<br />
 	- Implemented during the meeting the "random_noise(dim,batch_size)" and the "data_loader" function
 	- Distribution of tasks:
 		- Discriminator research & implementation Hakan and Julien
