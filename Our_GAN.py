@@ -152,25 +152,41 @@ def fake_data_target(size):
     return data
 
 def train_discriminator(optimizer, real_data, fake_data):
+    N = real_data.size(0)
     # Reset gradients
     optimizer.zero_grad()
    
-    # Train on Real Data
-    # Calculate error and backpropagate
-
-    # Train on Fake Data
-    # Calculate error and backpropagate 
-    # Update weights with gradients
+    #Training on real data
+    prediction_real = discriminator(real_data)
+    #Calculate error and backpropagation
+    error_real = loss(prediction_real,real_data_target(N))
+    error_real.backward()
     
-    # Return error
-    return 
+    #Training on fake data
+    prediction_fake = discriminator(fake_data)
+    #Calculate error and backpropagation
+    error_fake = loss(prediction_fake,fake_data_target(N))
+    error_fake.backward()
+    
+    #Update weights with gradients
+    optimizer.step()
+    
+    # Return error and prediction for real and fake inputs
+    return error_real + error_fake,prediction_real,prediction_fake
+
 def train_generator(optimizer, fake_data):
-    # Reset gradients
-    # Sample noise and generate fake data
+    N = fake_data.size(0)
+    #Reset gradients
+    optimizer.zero_grad()
+    # Generate fake data
+    prediction = discriminator(fake_data)
     # Calculate error and backpropagate
+    error = loss(prediction,real_data_target(N))
+    error.backward()
     # Update weights with gradients
-    # Return error
-    return
+    optimizer.step()
+    
+    return error
 
 logger = Logger(model_name='VGAN', data_name='MNIST')
 
