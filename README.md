@@ -53,12 +53,12 @@ Tutorial on how to run the GAN:
 4. Now you choose 'HakanDeymeci/vanila-gan' as Repository and 'master' as Branch.
 5. Now open the python notebook data called 'Generative_Adversarial_Networks_PyTorch.ipynb'.
 6. Importing the Logger file from Drive:
-	6.1. Go on the following link 'https://github.com/HakanDeymeci/vanila-gan/blob/master/utils.py' and download this file.
-	6.2. Add this file to Drive over the link 'https://drive.google.com/drive/my-drive'.
-	6.3. Press hotkeys 'STRG+F9' and run the code for the first time.
-	6.4. Press on the link below the first code snippet to get authorization code.
-	6.5. Copy this code and insert it in the field and press enter.
-	6.6. Now tensorboardX-2.0 should be installed successfully.
+6.1. Go on the following link 'https://github.com/HakanDeymeci/vanila-gan/blob/master/utils.py' and download this file.
+6.2. Add this file to Drive over the link 'https://drive.google.com/drive/my-drive'.
+6.3. Press hotkeys 'STRG+F9' and run the code for the first time.
+6.4. Press on the link below the first code snippet to get authorization code.
+6.5. Copy this code and insert it in the field and press enter.
+6.6. Now tensorboardX-2.0 should be installed successfully.
 7. To run the GAN press now the hotkeys 'STRG+F9' oder go under 'Run all' over the dropdown menu 'Runtime'.
 
 
