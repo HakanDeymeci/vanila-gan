@@ -4,10 +4,10 @@
 Documentation:
 #21.05.2020
 We created a Whatsapp Group and a Discord sever to be better in contact with each of us.
-|
-|
-|
-|
+|\\
+|\\
+|\\
+|\\
 #25.05.2020
 Over the weekend, we created a text-channel on our Discord server "websites-and-links" where we collected some useful links and explanations about our project.
 The Monday later we had our first meeting over Discord. We created the repository and the project "vanila-gan" and tried to get used to github.
