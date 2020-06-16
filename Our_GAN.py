@@ -63,19 +63,19 @@ class DiscriminatorNet(torch.nn.Module):
         output_size = 1
         
         self.firstHiddenLayer = nn.Sequential( 
-            nn.Linear(input_size, firstHiddenLayer_size),
+            nn.Linear(input_size, DfirstHiddenLayer_size),
             nn.LeakyReLU(0.2)
         )
         self.secondHiddenLayer = nn.Sequential(
-            nn.Linear(firstHiddenLayer_size, secondHiddenLayer_size),
+            nn.Linear(DfirstHiddenLayer_size, DsecondHiddenLayer_size),
             nn.LeakyReLU(0.2)
         )
         self.thirdHiddenLayer = nn.Sequential(
-            nn.Linear(secondHiddenLayer_size, thirdHiddenLayer_size),
+            nn.Linear(DsecondHiddenLayer_size, DthirdHiddenLayer_size),
             nn.LeakyReLU(0.2)
         )
         self.outputLayer = nn.Sequential(
-            torch.nn.Linear(thirdHiddenLayer_size, output_size),
+            torch.nn.Linear(DthirdHiddenLayer_size, output_size),
             torch.nn.Sigmoid()
         )
 
@@ -87,6 +87,12 @@ class DiscriminatorNet(torch.nn.Module):
         return x
     
 discriminator = DiscriminatorNet()
+
+def images_to_vectors(images):
+    return images.view(images.size(0), 784)
+
+def vectors_to_images(vectors):
+    return vectors.view(vectors.size(0), 1, 28, 28)
 
 """# Generator
 Similar like above:
