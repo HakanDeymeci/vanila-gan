@@ -213,13 +213,13 @@ for epoch in range(num_epochs):
         fake_data = generator(sample_noise(N,256)).detach()
         # Train D
         d_error, d_pred_real, d_pred_fake = \
-              train_discriminator(d_optimizer, real_data, fake_data)
+              train_discriminator(Discriminator_Optimizer, real_data, fake_data)
 
         # 2. Train Generator
         # Generate fake data
         fake_data = generator(sample_noise(N,256))
         # Train G
-        g_error = train_generator(g_optimizer, fake_data)
+        g_error = train_generator(Generator_Optimizer, fake_data)
         # Log batch error
         logger.log(d_error, g_error, epoch, n_batch, num_batches)
         # Display Progress every few batches
