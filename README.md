@@ -1,8 +1,8 @@
-# vanila-gan
+# Vanila-GAN
 Teamproject GAN Group 1.
 Team members: Julien, Hakan, Dennis, Delight
 
-# Documentation:<br />
+# Documentation<br />
 #### 21.05.2020<br />
 We created a Whatsapp Group and a Discord sever to be better in contact with each of us.<br />
 
@@ -46,7 +46,7 @@ We added some variables for functions and numbers for better visualization.<br /
 
 
 
-## Tutorial on how to run the GAN:<br />
+## Tutorial on how to run the GAN<br />
 
 1. Go on Colab using the following link 'https://colab.research.google.com/notebooks/welcome.ipynb'.<br />
 2. Press on the 'File/Open Notebook'. You can also use the hotkeys 'STRG+O'.<br />
