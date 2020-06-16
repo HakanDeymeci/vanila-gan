@@ -108,7 +108,7 @@ class GeneratorNet(torch.nn.Module):
 
     def __init__(self):
         super(GeneratorNet, self).__init__()
-        n_features = 6000 #not sure what the correct value would be, is this how many photos we have?
+        n_features = 256 #not sure what the correct value would be, is this how many photos we have?
         n_out = 784 #I think 784 is correct? 
         GfirstHiddenLayer_size = 256
         GsecondHiddenLayer_size = 512
