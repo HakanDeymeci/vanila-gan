@@ -109,13 +109,13 @@ class GeneratorNet(torch.nn.Module):
 
     def __init__(self):
         super(GeneratorNet, self).__init__()
-        n_features = 256 #not sure what the correct value would be, is this how many photos we have?
-        n_out = 784 #I think 784 is correct? 
+        n_features = 256 
+        n_out = 784  
         GfirstHiddenLayer_size = 256
         GsecondHiddenLayer_size = 512
         GthirdHiddenLayer_size = 1024
         
-        #all values will probably have to be replaced, I don't know how to check if this is correct
+       
         self.hidden0 = nn.Sequential(
             nn.Linear(n_features, GfirstHiddenLayer_size), 
             nn.LeakyReLU(0.2)
@@ -149,7 +149,7 @@ Make a function that returns an `optim.Adam` optimizer
 
 Discriminator_lr = 0.0002
 Generator_lr = 0.0002
-Discriminator_Optimizer = optim.Adam(discriminator.parameters(), lr=Discriminator_lr) #lr = learning rate
+Discriminator_Optimizer = optim.Adam(discriminator.parameters(), lr=Discriminator_lr) 
 Generator_Optimizer = optim.Adam(generator.parameters(), lr=Generator_lr)
 
 # Loss function
@@ -167,40 +167,29 @@ def fake_data_target(size):
 
 def train_discriminator(optimizer, real_data, fake_data):
     N = real_data.size(0)
-    # Reset gradients
     optimizer.zero_grad()
-   
-    #Training on real data
+    
     prediction_real = discriminator(real_data)
-    #Calculate error and backpropagation
     error_real = loss(prediction_real,real_data_target(N))
     error_real.backward()
     
-    #Training on fake data
     prediction_fake = discriminator(fake_data)
-    #Calculate error and backpropagation
     error_fake = loss(prediction_fake,fake_data_target(N))
     error_fake.backward()
-    
-    #Update weights with gradients
     optimizer.step()
     
-    # Return error and prediction for real and fake inputs
     return error_real + error_fake,prediction_real,prediction_fake
 
 def train_generator(optimizer, fake_data):
     N = fake_data.size(0)
-    #Reset gradients
     optimizer.zero_grad()
-    # Generate fake data
     prediction = discriminator(fake_data)
-    # Calculate error and backpropagate
     error = loss(prediction,real_data_target(N))
     error.backward()
-    # Update weights with gradients
     optimizer.step()
     
     return error
+
 num_test_samples = 16
 num_epochs = 400
 num_batches = len(data_loader)
