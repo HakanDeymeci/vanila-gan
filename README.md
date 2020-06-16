@@ -239,6 +239,7 @@ loss = nn.BCELoss()
 ## Real and fake images
 We can assume that real images are always ones while fake images are always zeros so we have to define two functions that return these values.
 
+```
 def real_data_target(size):
     data = Variable(torch.ones(size, 1))
     return data
@@ -246,6 +247,7 @@ def real_data_target(size):
 def fake_data_target(size):
     data = Variable(torch.zeros(size, 1))
     return data
+```
     
 ## Discriminator Loss
 
