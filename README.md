@@ -238,7 +238,7 @@ Next we defined the loss function with a Binary Cross Entopy Loss that is used t
 ```
 loss = nn.BCELoss()
 ```
-## Train a GAN
+## Training a GAN
 ### Real and fake images
 We can assume that real images are always ones while fake images are always zeros so we have to define two functions that return these values.
 
@@ -258,6 +258,32 @@ def fake_data_target(size):
 
 ### Testing
 Since we have defined all functions and methods we are able to run our GAN. In the following code we are using every piece of code we have written before and pass the results into a logging file that prints it out to visualize the process of the GAN.
+
+```
+num_test_samples = 16
+num_epochs = 400
+num_batches = len(data_loader)
+
+logger = Logger(model_name='vanila-GAN', data_name='MNIST')
+for epoch in range(num_epochs):
+    for n_batch, (real_batch,_) in enumerate(data_loader):
+        N = real_batch.size(0)
+        rdata = Variable(images_to_vectors(real_batch))
+        fdata = generator(sample_noise(N,256)).detach()
+        d_error, d_pred_real, d_pred_fake = \
+              train_discriminator(Discriminator_Optimizer, rdata, fdata)
+        fdata = generator(sample_noise(N,256))
+        g_error = train_generator(Generator_Optimizer, fdata)
+        logger.log(d_error, g_error, epoch, n_batch, num_batches)
+        if (n_batch) % 1500 == 0: 
+            test_images = vectors_to_images(generator(sample_noise(N,256)))
+            test_images = test_images.data
+            logger.log_images(test_images, num_test_samples,epoch, n_batch, num_batches);
+            # Display status Logs
+            logger.display_status(epoch, num_epochs, n_batch, num_batches,d_error, g_error, d_pred_real, d_pred_fake)
+# logging model Checkpoints
+logger.save_models(generator, discriminator, epoch)
+```
 
 ## Conclusion
 In summary we can say that we had to do a lot of testing to figure out which values fit the best to get the fastest and most accurate results possible. 
