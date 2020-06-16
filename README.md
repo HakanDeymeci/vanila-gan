@@ -2,11 +2,11 @@
 Teamproject GAN Group 1.
 Team members: Julien, Hakan, Dennis, Delight
 
-Documentation:<br />
-#21.05.2020<br />
+# Documentation:<br />
+#### 21.05.2020<br />
 We created a Whatsapp Group and a Discord sever to be better in contact with each of us.<br />
 
-#25.05.2020<br />
+#### 25.05.2020<br />
 Over the weekend, we created a text-channel on our Discord server "websites-and-links" where we collected some useful links and explanations about our project.<br />
 The Monday later we had our first meeting over Discord. We created the repository and the project "vanila-gan" and tried to get used to github.<br />
 Results from the first Meeting:<br />
@@ -17,21 +17,21 @@ Results from the first Meeting:<br />
 		- Generator research & implementation Delight and Dennis<br />
 		- created a new experimental branch<br />
 
-#26.05.2020 - #30.05.2020 <br />
+#### 26.05.2020 - 30.05.2020 <br />
 ---research time---<br />
 
-#31.05.2020<br />
+#### 31.05.2020<br />
 Later this week we had our second meeting, where we presented and explained our tasks to the other duo.<br />
 We put an sturcture for the Generator and the Discriminator in the experimental branch.<br />
 Results from the second Meeting:<br />
 	- updated and adjusted the discriminator/generator layout <br />
 	- added the train function<br />
 
-#03.06.2020<br />
+#### 03.06.2020<br />
 Results from the third Meeting:<br />
 	- added the optim.Adam() optimizers in the experimental branch<br />
 
-#10.06.2020<br />
+#### 10.06.2020<br />
 We faced during the Meeting some size-mismatch problems which we tried to remedy for the rest of the day.<br />
 Results from the fourth Meeting:<br />
 	- updated the "data_loader" function<br />
@@ -39,14 +39,14 @@ Results from the fourth Meeting:<br />
 	- added code for importing the logger from 'Google Drive'<br />
 	- got our first visual outputs<br />
 
-#11.06.2020 - now<br />
+#### 11.06.2020 - now<br />
 After we had some good results without any errors in our experimental branch we started impelmenting parts of the code in our master Branch.<br />
 We added some variables for functions and numbers for better visualization.<br />
 
 
 
 
-Tutorial on how to run the GAN:<br />
+## Tutorial on how to run the GAN:<br />
 
 1. Go on Colab using the following link 'https://colab.research.google.com/notebooks/welcome.ipynb'.<br />
 2. Press on the 'File/Open Notebook'. You can also use the hotkeys 'STRG+O'.<br />
