@@ -162,7 +162,7 @@ class DiscriminatorNet(torch.nn.Module):
 discriminator = DiscriminatorNet()
 ```
 Visualization of the DiscriminatorNet():<br />
-![](DiscriminatorNET.png)
+<img src="DiscriminatorNET.PNG">
 Furthermore we added one function that converts flattened images into a 2D representation. We also added a function that does it vice versa. 
 
 ```
