@@ -198,43 +198,26 @@ def train_generator(optimizer, fake_data):
     optimizer.step()
     
     return error
-
-logger = Logger(model_name='VGAN', data_name='MNIST')
+num_test_samples = 16
 num_epochs = 400
 num_batches = len(data_loader)
-num_test_samples = 16
+
+logger = Logger(model_name='vanila-GAN', data_name='MNIST')
 for epoch in range(num_epochs):
     for n_batch, (real_batch,_) in enumerate(data_loader):
         N = real_batch.size(0)
-        # 1. Train Discriminator
-        real_data = Variable(images_to_vectors(real_batch))
-        # Generate fake data and detach 
-        # (so gradients are not calculated for generator)
-        fake_data = generator(sample_noise(N,256)).detach()
-        # Train D
+        rdata = Variable(images_to_vectors(real_batch))
+        fdata = generator(sample_noise(N,256)).detach()
         d_error, d_pred_real, d_pred_fake = \
               train_discriminator(Discriminator_Optimizer, real_data, fake_data)
-
-        # 2. Train Generator
-        # Generate fake data
-        fake_data = generator(sample_noise(N,256))
-        # Train G
-        g_error = train_generator(Generator_Optimizer, fake_data)
-        # Log batch error
+        fdata = generator(sample_noise(N,256))
+        g_error = train_generator(Generator_Optimizer, fdata)
         logger.log(d_error, g_error, epoch, n_batch, num_batches)
-        # Display Progress every few batches
         if (n_batch) % 1500 == 0: 
             test_images = vectors_to_images(generator(sample_noise(N,256)))
             test_images = test_images.data
-            logger.log_images(
-                test_images, num_test_samples, 
-                epoch, n_batch, num_batches
-            );
+            logger.log_images(test_images, num_test_samples,epoch, n_batch, num_batches);
             # Display status Logs
-            logger.display_status(
-                epoch, num_epochs, n_batch, num_batches,
-                d_error, g_error, d_pred_real, d_pred_fake
-            )
-
-        # Model Checkpoints
-        logger.save_models(generator, discriminator, epoch)
+            logger.display_status(epoch, num_epochs, n_batch, num_batches,d_error, g_error, d_pred_real, d_pred_fake)
+# logging model Checkpoints
+logger.save_models(generator, discriminator, epoch)
