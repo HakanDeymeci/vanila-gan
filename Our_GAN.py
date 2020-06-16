@@ -146,9 +146,8 @@ generator = GeneratorNet()
 Make a function that returns an `optim.Adam` optimizer
 """
 
-# Optimizers
-Discriminator_lr = 0.0007
-Generator_lr = 0.0006
+Discriminator_lr = 0.0002
+Generator_lr = 0.0002
 Discriminator_Optimizer = optim.Adam(discriminator.parameters(), lr=Discriminator_lr) #lr = learning rate
 Generator_Optimizer = optim.Adam(generator.parameters(), lr=Generator_lr)
 
