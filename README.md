@@ -64,7 +64,7 @@ download this file.<br />
 7. To run the GAN press now the hotkeys 'STRG+F9' oder go under 'Run all' over the dropdown menu
 'Runtime'.<br />
 
-#Explanatino of our Code
+# Explanatino of our Code
 
 We start by mounting a Google Drive since we run our code in Google Colab and need to have our logger and GAN in separate files but in the same folder.
 
