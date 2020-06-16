@@ -23,6 +23,7 @@ from torchvision.datasets import MNIST
 from torchvision.utils import make_grid
 from torch.utils.data import DataLoader
 import imageio
+from utils import Logger
 ...
 
 """## Dataset
