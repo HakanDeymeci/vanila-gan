@@ -214,15 +214,8 @@ for epoch in range(num_epochs):
         if (n_batch) % 1500 == 0: 
             test_images = vectors_to_images(generator(sample_noise(N,256)))
             test_images = test_images.data
-            logger.log_images(
-                test_images, num_test_samples, 
-                epoch, n_batch, num_batches
-            );
+            logger.log_images(test_images, num_test_samples,epoch, n_batch, num_batches);
             # Display status Logs
-            logger.display_status(
-                epoch, num_epochs, n_batch, num_batches,
-                d_error, g_error, d_pred_real, d_pred_fake
-            )
-
-        # Model Checkpoints
-        logger.save_models(generator, discriminator, epoch)
+            logger.display_status(epoch, num_epochs, n_batch, num_batches,d_error, g_error, d_pred_real, d_pred_fake)
+# logging model Checkpoints
+logger.save_models(generator, discriminator, epoch)
