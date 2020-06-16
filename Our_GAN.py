@@ -23,7 +23,6 @@ from torchvision.datasets import MNIST
 from torchvision.utils import make_grid
 from torch.utils.data import DataLoader
 import imageio
-from utils import Logger
 ...
 
 """## Dataset
@@ -198,19 +197,41 @@ def train_generator(optimizer, fake_data):
     return error
 
 logger = Logger(model_name='VGAN', data_name='MNIST')
-
+num_epochs = 400
+num_batches = len(data_loader)
+num_test_samples = 16
 for epoch in range(num_epochs):
     for n_batch, (real_batch,_) in enumerate(data_loader):
-
-        # Train Discriminator
-        # Generate fake data
+        N = real_batch.size(0)
+        # 1. Train Discriminator
+        real_data = Variable(images_to_vectors(real_batch))
+        # Generate fake data and detach 
+        # (so gradients are not calculated for generator)
+        fake_data = generator(sample_noise(N,256)).detach()
         # Train D
+        d_error, d_pred_real, d_pred_fake = \
+              train_discriminator(d_optimizer, real_data, fake_data)
 
-
-        # Train Generator
+        # 2. Train Generator
         # Generate fake data
+        fake_data = generator(sample_noise(N,256))
         # Train G
-        # Log error
+        g_error = train_generator(g_optimizer, fake_data)
+        # Log batch error
+        logger.log(d_error, g_error, epoch, n_batch, num_batches)
+        # Display Progress every few batches
+        if (n_batch) % 1500 == 0: 
+            test_images = vectors_to_images(generator(sample_noise(N,256)))
+            test_images = test_images.data
+            logger.log_images(
+                test_images, num_test_samples, 
+                epoch, n_batch, num_batches
+            );
+            # Display status Logs
+            logger.display_status(
+                epoch, num_epochs, n_batch, num_batches,
+                d_error, g_error, d_pred_real, d_pred_fake
+            )
 
         # Model Checkpoints
         logger.save_models(generator, discriminator, epoch)
