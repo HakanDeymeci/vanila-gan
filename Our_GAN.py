@@ -62,15 +62,18 @@ class DiscriminatorNet(torch.nn.Module):
         
         self.firstHiddenLayer = nn.Sequential( 
             nn.Linear(input_size, DfirstHiddenLayer_size),
-            nn.LeakyReLU(0.2)
+            nn.LeakyReLU(0.2),
+            nn.Dropout(0.3)
         )
         self.secondHiddenLayer = nn.Sequential(
             nn.Linear(DfirstHiddenLayer_size, DsecondHiddenLayer_size),
-            nn.LeakyReLU(0.2)
+            nn.LeakyReLU(0.2),
+            nn.Dropout(0.3)
         )
         self.thirdHiddenLayer = nn.Sequential(
             nn.Linear(DsecondHiddenLayer_size, DthirdHiddenLayer_size),
-            nn.LeakyReLU(0.2)
+            nn.LeakyReLU(0.2),
+            nn.Dropout(0.3)
         )
         self.outputLayer = nn.Sequential(
             torch.nn.Linear(DthirdHiddenLayer_size, output_size),
