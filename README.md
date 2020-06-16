@@ -216,7 +216,8 @@ class GeneratorNet(torch.nn.Module):
 generator = GeneratorNet()
 ```
 ### Visualization of the GeneratorNet()
-<img src="GeneratorNET.PNG">
+<img src="GeneratorNET.PNG"><br />
+
 ## Optimization
 Another point to consider is the optimization algorithm for both of our networks. We are using a function that returns a Adam optimization. The learning rate we have chosen is the result of intense testing.
 
@@ -226,9 +227,9 @@ Generator_lr = 0.0002
 Discriminator_Optimizer = optim.Adam(discriminator.parameters(), lr=Discriminator_lr) 
 Generator_Optimizer = optim.Adam(generator.parameters(), lr=Generator_lr)
 ```
-### Visualization of the whole GAN
+
 Next we defined the loss function with a Binary Cross Entopy Loss that is used to calculate the loss of each mini batch.
-<img src="GAN.PNG">
+
 ```
 loss = nn.BCELoss()
 ```
@@ -244,8 +245,8 @@ In summary we can say that we had to do a lot of testing to figure out which val
 When running the GAN the first time the Discriminator loss was very high due to the fact that it does not know whether images are real or fake. Moving on the discriminator loss decreased while the generator loss increased. That showed us that the discriminator is able to decide if images are fake or not. After running the code for some time we have noticed that the discriminator loss increased and generator loss decreased. That is part of the fact that the Generator generates images that become harder for the Discriminator to unmask as fake.
 
 In the following animation you can see the process of our logger output when running the GAN. In the beginning the images generated are pixel mud but they get better over time…
-
-
+### Visualization of the whole GAN
+<img src="GAN.PNG">
 
 
 
