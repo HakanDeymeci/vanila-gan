@@ -215,7 +215,8 @@ class GeneratorNet(torch.nn.Module):
 	
 generator = GeneratorNet()
 ```
-
+Visualization of the GeneratorNet():<br />
+<img src="GeneratorNET.PNG">
 ## Optimization
 Another point to consider is the optimization algorithm for both of our networks. We are using a function that returns a Adam optimization. The learning rate we have chosen is the result of intense testing.
 
@@ -225,9 +226,9 @@ Generator_lr = 0.0002
 Discriminator_Optimizer = optim.Adam(discriminator.parameters(), lr=Discriminator_lr) 
 Generator_Optimizer = optim.Adam(generator.parameters(), lr=Generator_lr)
 ```
-
+Visualization of the whole GAN:<br />
 Next we defined the loss function with a Binary Cross Entopy Loss that is used to calculate the loss of each mini batch.
-
+<img src="GAN.PNG">
 ```
 loss = nn.BCELoss()
 ```
