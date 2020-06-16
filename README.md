@@ -103,12 +103,11 @@ We are using the MNIST dataset that includes black and white images of handwritt
 Since the input values of the dataset are between 0 and 255 we need to normalize them in to values between -1 and 1.
 
 ```
-transform_data = transforms.Compose([transforms.ToTensor(),
-                                transforms.Normalize(mean=[0.5],
-                                std=[0.5])])
+batch_size = 56
+transform_data = transforms.Compose([transforms.ToTensor(), transforms.Normalize(mean=[0.5], std=[0.5])])
 
-mnist_data = MNIST(root='./MNIST_data', train=True, download=True, transform=transform_data)
-data_loader = DataLoader(dataset=mnist_data, shuffle=True, batch_size=56)
+mnist_data = MNIST(root='./MNIST_data', train=True, download=True, transform=transform_data) 
+data_loader = DataLoader(dataset=mnist_data, shuffle=True, batch_size=batch_size)
 ```
 
 ## Networks
@@ -117,7 +116,7 @@ Before defining the networks we have to create some random noise. random_noise(b
 
 ```
 def sample_noise(batch_size, dim): 
-  return torch.rand(batch_size, dim) + torch.rand(batch_size, dim)*(-1)
+    return torch.rand(batch_size, dim) + torch.rand(batch_size, dim)*(-1)
 ```
 ### Visualization of the sample_noise(batch_size, dim)
 <img src="randomnoise.PNG">
@@ -139,19 +138,22 @@ class DiscriminatorNet(torch.nn.Module):
         output_size = 1
         
         self.firstHiddenLayer = nn.Sequential( 
-            nn.Linear(input_size, firstHiddenLayer_size),
-            nn.LeakyReLU(0.2)
+            nn.Linear(input_size, DfirstHiddenLayer_size),
+            nn.LeakyReLU(0.2),
+            nn.Dropout(0.3)
         )
         self.secondHiddenLayer = nn.Sequential(
-            nn.Linear(firstHiddenLayer_size, secondHiddenLayer_size),
-            nn.LeakyReLU(0.2)
+            nn.Linear(DfirstHiddenLayer_size, DsecondHiddenLayer_size),
+            nn.LeakyReLU(0.2),
+            nn.Dropout(0.3)
         )
         self.thirdHiddenLayer = nn.Sequential(
-            nn.Linear(secondHiddenLayer_size, thirdHiddenLayer_size),
-            nn.LeakyReLU(0.2)
+            nn.Linear(DsecondHiddenLayer_size, DthirdHiddenLayer_size),
+            nn.LeakyReLU(0.2),
+            nn.Dropout(0.3)
         )
         self.outputLayer = nn.Sequential(
-            torch.nn.Linear(thirdHiddenLayer_size, output_size),
+            torch.nn.Linear(DthirdHiddenLayer_size, output_size),
             torch.nn.Sigmoid()
         )
 
@@ -184,8 +186,8 @@ class GeneratorNet(torch.nn.Module):
 
     def __init__(self):
         super(GeneratorNet, self).__init__()
-        n_features = 6000 
-        n_out = 784 
+        n_features = 256 #not sure what the correct value would be, is this how many photos we have?
+        n_out = 784 #I think 784 is correct? 
         GfirstHiddenLayer_size = 256
         GsecondHiddenLayer_size = 512
         GthirdHiddenLayer_size = 1024
@@ -215,7 +217,7 @@ class GeneratorNet(torch.nn.Module):
         x = self.hidden2(x)
         x = self.out(x)
         return x
-	
+    
 generator = GeneratorNet()
 ```
 ### Visualization of the GeneratorNet()
