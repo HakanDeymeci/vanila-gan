@@ -256,6 +256,34 @@ def fake_data_target(size):
 <img src="evolution loss function.PNG"><br />
 This is a visualization of the loss values according to the first 50 epochs of a run of our GAN.<br />
 It can be seen, that the values are converging towards each other.<br />
+
+```
+def train_discriminator(optimizer, real_data, fake_data):
+    N = real_data.size(0)
+    optimizer.zero_grad()
+    
+    prediction_real = discriminator(real_data)
+    error_real = loss(prediction_real,real_data_target(N))
+    error_real.backward()
+    
+    prediction_fake = discriminator(fake_data)
+    error_fake = loss(prediction_fake,fake_data_target(N))
+    error_fake.backward()
+    optimizer.step()
+    
+    return error_real + error_fake,prediction_real,prediction_fake
+
+def train_generator(optimizer, fake_data):
+    N = fake_data.size(0)
+    optimizer.zero_grad()
+    prediction = discriminator(fake_data)
+    error = loss(prediction,real_data_target(N))
+    error.backward()
+    optimizer.step()
+    
+    return error
+```
+
 ### Testing
 Since we have defined all functions and methods we are able to run our GAN. In the following code we are using every piece of code we have written before and pass the results into a logging file that prints it out to visualize the process of the GAN.
 
