@@ -64,6 +64,10 @@ download this file.<br />
 7. To run the GAN press now the hotkeys 'STRG+F9' oder go under 'Run all' over the dropdown menu
 'Runtime'.<br />
 
+## Run Vanila-GAN on Google Colab
+Here is a Link where you can run our code on Google Colab. You just have to import the "utils.py" file into your Google Drive.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/HakanDeymeci/vanila-gan/blob/master/Generative_Adversarial_Networks_PyTorch.ipynb)
+
 ## Overview of the Vanila GAN
 The Vanila GAN is a Generative Adversarial Network. The main parts are a Discriminator, a Generator and a dataset. In our case the MNIST dataset that holds images of handwritten numbers. The main goal of the GAN is that the Generator should produce fake images that can’t be differentiated with real images by the Discriminator. In other words: The Generator should make the Discriminator think that it is always getting real images even if they are generated.
 We visualized the GAN in the following picture. 
