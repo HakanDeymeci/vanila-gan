@@ -72,7 +72,7 @@ We visualized the GAN in the following picture.
 
 # Explanation of our Code
 
-We start by mounting a Google Drive since we run our code in Google Colab and need to have our logger and GAN in separate files but in the same folder.
+We start by mounting a Google Drive since we run our code in Google Colab and need to have our logger and GAN in separate files.
 
 ```
 from google.colab import drive
@@ -98,7 +98,7 @@ from torch.utils.data import DataLoader
 import imageio
 ```
 
-We also need a logger to log the process of our GAN so we imported a logger from a separate file as Logger. This file has to be in the same folder as the GAN itself.
+We also need a logger to log the process of our GAN so we imported a logger from a separate file as Logger.
 
 ```
 from utils import Logger
