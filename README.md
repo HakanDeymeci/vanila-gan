@@ -64,8 +64,8 @@ download this file.<br />
 7. To run the GAN press now the hotkeys 'STRG+F9' oder go under 'Run all' over the dropdown menu
 'Runtime'.<br />
 
-## Run Vanila-GAN on Google Colab
-Here is a Link where you can run our code on Google Colab. You just have to import the "utils.py" file into your Google Drive.
+## Run Vanila-GAN on Google Colab (The simple way)
+Here is a Link where you can run our code on Google Colab. You just have to import the "utils.py" file into your Google Drive "/content/drive/My Drive" and run it.
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/HakanDeymeci/vanila-gan/blob/master/Generative_Adversarial_Networks_PyTorch.ipynb)
 
 ## Overview of the Vanila GAN
@@ -83,7 +83,7 @@ from google.colab import drive
 drive.mount('/content/drive')
 
 import sys
-sys.path.append('/content/drive/My Drive/Colab Notebooks')
+sys.path.append('/content/drive/My Drive')
 
 !pip3 install tensorboardX
 ```
